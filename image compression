@@ -1,0 +1,35 @@
+import os
+from PIL import Image, ImageDraw, ImageFont
+from os import listdir
+import sys
+from datetime import datetime
+dateTimeObj = datetime.now()
+count = 0
+for i in listdir(r"/Users/dilipkumarvemula/Desktop/images_pochettes_26551/"):
+    try:
+        #image_font_path = '/Users/dilipkumarvemula/Desktop/practiceimage_2/'
+        image_path_input = rf"/Users/dilipkumarvemula/Desktop/images_pochettes_26551/{i}"
+        image_path_output = '/Users/dilipkumarvemula/Desktop/practiceimage/'
+        # image_name_input = '05_compress_image_01_input.png'
+        image_name_input = str(i)
+        im = Image.open(image_path_input)
+        print(i)
+        print('Input file size   : ', im.size )
+        print('Input file name   : ', image_name_input )
+        print('Input Image Size  : ', os.path.getsize (image_path_input))
+        # image_name_output = '05_compress_image_01_output.png'
+        image_name_output = str(i)
+        im.save(image_path_output + image_name_output ,optimize=True,quality=4) 
+        count = count+1
+        print("number of images",count)
+        print('Output file size  : ', im.size )
+        print('Output file name  : ', image_name_output)
+        print('Output Image Size : ', os.path.getsize (image_path_output + image_name_output))
+        print('*** Program Ended ***')
+    except Exception:
+        print("no data found")
+dateTimeObj_end = datetime.now()
+print(dateTimeObj_end)    
+time_taken = dateTimeObj_end - dateTimeObj
+print("time taken to complete the process",time_taken)
+print('*** Program Ended ***')
